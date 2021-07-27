@@ -1,0 +1,10 @@
+django
+django-crispy-forms
+djangorestframework
+django-mathfilters
+requests
+xhtml2pdf
+selenium
+psycopg2
+gunicorn
+django-heroku
