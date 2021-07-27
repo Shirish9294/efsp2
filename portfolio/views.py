@@ -187,29 +187,18 @@ def portfolio(request, pk):
     for stock in stocks:
         sum_current_stocks_value += stock.current_stock_value()
         sum_of_initial_stock_value += stock.initial_stock_value()
-    stock_result = sum_current_stocks_value - sum_of_initial_stock_value
 
     for investment in investments:
         sum_current_investment_value += investment.recent_value
         sum_of_initial_investment_value += investment.acquired_value
-    investment_result = sum_current_investment_value - sum_of_initial_investment_value
-
-    Total_current_investments = float(sum_current_stocks_value) + float(sum_current_investment_value)
-    Total_initial_investments = float(sum_of_initial_investment_value) + float(sum_of_initial_stock_value)
-    Grand_total = stock_result + investment_result
 
     return render(request, 'portfolio/portfolio.html', {'customers': customers,
                                                         'investments': investments,
                                                         'stocks': stocks,
                                                         'sum_acquired_value': sum_acquired_value,
                                                         'sum_recent_value': sum_recent_value,
-                                                        'stock_result': stock_result,
                                                         'sum_current_stocks_value': sum_current_stocks_value,
-                                                        'sum_of_initial_stock_value': sum_of_initial_stock_value,
-                                                        'investment_result': investment_result,
-                                                        'Total_current_investments': Total_current_investments,
-                                                        'Total_initial_investmensts': Total_initial_investments,
-                                                        'Grand_total': Grand_total})
+                                                        'sum_of_initial_stock_value': sum_of_initial_stock_value,})
 
 
 # List at the end of the views.py
@@ -257,6 +246,7 @@ def portfolio_pdf(request, pk):
     for stock in stocks:
         sum_current_stocks_value += stock.current_stock_value()
         sum_of_initial_stock_value += stock.initial_stock_value()
+
     template = get_template('portfolio/portfolio_pdf.html')
     context = {'customers': customers,
                'investments': investments,
